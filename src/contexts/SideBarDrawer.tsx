@@ -18,7 +18,7 @@ export const SideBarDrawerProvider = ({ children }: Props) => {
 
   useEffect(() => {
     disclosure.onClose()
-  }, [location.pathname, disclosure])
+  }, [location.pathname])
 
   return (
     <SideBarDrawerContext.Provider value={disclosure}>
