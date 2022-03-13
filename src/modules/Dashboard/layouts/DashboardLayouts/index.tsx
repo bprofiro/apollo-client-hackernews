@@ -1,4 +1,5 @@
-import { Flex, Box } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
+import { useEffect } from 'react'
 import { Header } from '../../../../components/Header'
 import { SideBar } from '../../../../components/SideBar'
 
@@ -8,11 +9,12 @@ type Props = {
 }
 
 export const DashboardLayout = ({ children, title }: Props) => {
+  useEffect(() => {
+    document.title = title
+  }, [title])
+
   return (
     <Flex direction="column" h="100vh">
-      {/* <head>
-        <title>{title} | Hackernews</title>
-      </head> */}
       <Header />
 
       <Flex w="100%" my="6" maxWidth={1488} mx="auto" px="6">

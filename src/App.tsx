@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
+import { AuthenticatedRoute } from './components/Routes/AuthenticatedRoute'
 import { SignIn } from './modules/Auth/pages/SignIn'
 import { SignUp } from './modules/Auth/pages/SignUp'
 import { CreateLink } from './modules/Dashboard/pages/CreateLink'
@@ -12,13 +13,45 @@ function App() {
       <Route path="/sign-up" element={<SignUp />} />
       <Route path="/sign-in" element={<SignIn />} />
 
-      <Route path="/dashboard/:page" element={<Home />} />
-      <Route path="/top" element={<Trending />} />
-      <Route path="/search" element={<Search />} />
-      <Route path="/create" element={<CreateLink />} />
+      <Route
+        path="/dashboard/:page"
+        element={
+          <AuthenticatedRoute>
+            <Home />
+          </AuthenticatedRoute>
+        }
+      />
+      <Route
+        path="/top"
+        element={
+          <AuthenticatedRoute>
+            <Trending />
+          </AuthenticatedRoute>
+        }
+      />
+      <Route
+        path="/search"
+        element={
+          <AuthenticatedRoute>
+            <Search />
+          </AuthenticatedRoute>
+        }
+      />
+      <Route
+        path="/create"
+        element={
+          <AuthenticatedRoute>
+            <CreateLink />
+          </AuthenticatedRoute>
+        }
+      />
       <Route
         path="/dashboard"
-        element={<Navigate replace to="/dashboard/1" />}
+        element={
+          <AuthenticatedRoute>
+            <Navigate replace to="/dashboard/1" />
+          </AuthenticatedRoute>
+        }
       />
     </Routes>
   )
