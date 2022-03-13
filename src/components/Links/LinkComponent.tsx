@@ -1,5 +1,6 @@
 import { Flex, IconButton, Link as ChakraLink, Text } from '@chakra-ui/react'
-import { RiHeartLine } from 'react-icons/ri'
+import { RiHeart3Fill, RiHeartLine } from 'react-icons/ri'
+import { LINKS_PER_PAGE } from '../../common/constants/pages'
 import { FEED_QUERY } from '../../graphql/queries/feed'
 import { useVoteLink } from '../../hooks/graphql/mutations/useVoteLink'
 import { useAuth } from '../../hooks/useAuth'
@@ -44,7 +45,11 @@ export const Link = ({ description, index, url, votes, id }: Props) => {
     update: (cache, { data: { vote } }) => {
       const data = cache.readQuery<FeedLinks>({
         query: FEED_QUERY,
-        variables: { take: 100, skip: 0, orderBy: { createdAt: 'desc' } }
+        variables: {
+          take: LINKS_PER_PAGE,
+          skip: 0,
+          orderBy: { createdAt: 'desc' }
+        }
       })
 
       if (data) {
@@ -67,7 +72,11 @@ export const Link = ({ description, index, url, votes, id }: Props) => {
               links: updatedLinks
             }
           },
-          variables: { take: 100, skip: 0, orderBy: { createdAt: 'desc' } }
+          variables: {
+            take: LINKS_PER_PAGE,
+            skip: 0,
+            orderBy: { createdAt: 'desc' }
+          }
         })
       }
     }
@@ -103,18 +112,27 @@ export const Link = ({ description, index, url, votes, id }: Props) => {
 
       <Flex align="center" justify="flex-start" marginLeft="auto" gap="3">
         <Text fontSize="sm">{votes.length} likes</Text>
-        <IconButton
-          aria-label="Like this link"
-          icon={<RiHeartLine />}
-          colorScheme="blue"
-          onClick={handleVoteLnk}
-          isDisabled={hasUserAlreadyVotedIsThisLink}
-          _disabled={{
-            bgColor: 'gray.700',
-            cursor: 'pointer',
-            pointerEvents: 'none'
-          }}
-        />
+        {hasUserAlreadyVotedIsThisLink ? (
+          <IconButton
+            aria-label="Like this link"
+            icon={<RiHeart3Fill />}
+            colorScheme="blue"
+            onClick={handleVoteLnk}
+            isDisabled
+            _disabled={{
+              bgColor: 'gray.700',
+              cursor: 'pointer',
+              pointerEvents: 'none'
+            }}
+          />
+        ) : (
+          <IconButton
+            aria-label="Like this link"
+            icon={<RiHeartLine />}
+            colorScheme="blue"
+            onClick={handleVoteLnk}
+          />
+        )}
       </Flex>
     </Flex>
   )
