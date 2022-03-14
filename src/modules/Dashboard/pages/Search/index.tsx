@@ -4,34 +4,13 @@ import { useSearchLinks } from '../../../../hooks/graphql/queries/useSearchLinks
 import { DashboardLayout } from '../../layouts/DashboardLayouts/index'
 import { SearchInput } from './components/SearchInput'
 
-const links = [
-  {
-    id: '1',
-    url: 'https://github.com/Rocketseat/andromeda',
-    description: 'Andromeda Design System Github respository',
-    createdAt: new Date(),
-    postedBy: {
-      id: '1',
-      name: 'Brenda Profiro'
-    },
-    votes: [
-      {
-        id: '1',
-        user: {
-          id: '1'
-        }
-      }
-    ]
-  }
-]
-
 export const Search = () => {
   const [searchLinks, { data, loading: isLoadingSearch }] = useSearchLinks()
 
-  const handleSubmit = async (data: string) => {
+  const handleSubmit = async (search: string) => {
     await searchLinks({
       variables: {
-        filter: data
+        filter: search
       }
     })
   }
