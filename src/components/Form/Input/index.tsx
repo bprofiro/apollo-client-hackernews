@@ -14,10 +14,10 @@ type InputProps = ChakraInputProps & {
   error?: FieldError
 }
 
-export const InputComponent: ForwardRefRenderFunction<
-  HTMLInputElement,
-  InputProps
-> = ({ name, label, error = null, ...props }, ref) => {
+const InputComponent: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
+  { name, label, error = null, ...props },
+  ref
+) => {
   return (
     <FormControl isInvalid={!!error}>
       {!!label && <FormLabel htmlFor={name}>{label}</FormLabel>}
