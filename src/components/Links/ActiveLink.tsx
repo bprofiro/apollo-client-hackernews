@@ -14,7 +14,6 @@ export const ActiveLink = ({
   let isActive = false
 
   const location = useLocation()
-  const params = useParams()
 
   if (shouldMatchExactHref && location.pathname === rest.to) {
     isActive = true
