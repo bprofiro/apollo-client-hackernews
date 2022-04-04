@@ -17,7 +17,7 @@
 
    <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen">
    <a href="https://github.com/bprofiro/apollo-client-hackernews/stargazers">
-    <img alt="Stargazers" src="https://img.shields.io/github/stars/bprofiro/editor?style=social">
+    <img alt="Stargazers" src="https://img.shields.io/github/stars/bprofiro/apollo-client-hackernews?style=social">
   </a>
 
   <a href="https://github.com/bprofiro/">
